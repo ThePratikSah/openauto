@@ -42,7 +42,7 @@ SET DB=openauto
 
 ```
 export MONGODB=mongodb+srv://username:password@openauto-demo.zxdes.mongodb.net/?retryWrites=true&w=majority
-SET DB=openauto
+export DB=openauto
 ```
 
 ## Install MongoDB
