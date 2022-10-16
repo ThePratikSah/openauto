@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -139,42 +139,41 @@ function validate(values) {
   const errors = {};
 
   if (!values.name) {
-    errors.name = 'Required';
+    errors.name = "Required";
   } else if (values.name.length > 20) {
-    errors.name = 'Must be 20 characters or less';
+    errors.name = "Must be 20 characters or less";
   }
 
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = "Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = "Invalid email address";
   }
 
   return errors;
-};
+}
 
 // handle post request
 async function handlePost(values, resetForm) {
-
-  const res = await fetch('/api/form', {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
+  const res = await fetch("/api/form", {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: values // body data type must match "Content-Type" header
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: values, // body data type must match "Content-Type" header
   });
 
   const data = await res.json();
 
   if (res.status === 201) {
-    alert('Form submited');
-    resetForm({ values: '' });
+    alert("Form submited");
+    resetForm({ values: "" });
   }
 }
 
@@ -182,18 +181,18 @@ async function handlePost(values, resetForm) {
 function CustomForm() {
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
+      name: "",
+      email: "",
     },
     validate,
-    onSubmit: (values, {resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       handlePost(JSON.stringify(values, null, 2), resetForm);
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form className={styles.form} onSubmit={formik.handleSubmit}>
       <input
-        placeholder='Enter your name'
+        placeholder="Enter your name"
         className={styles.input}
         id="name"
         name="name"
@@ -204,7 +203,7 @@ function CustomForm() {
       {formik.errors.name ? <div>{formik.errors.name}</div> : null}
 
       <input
-        placeholder='Enter your email'
+        placeholder="Enter your email"
         className={styles.input}
         id="email"
         name="email"
@@ -214,7 +213,9 @@ function CustomForm() {
       />
       {formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
-      <button className={styles.input}  type="submit">Submit</button>
+      <button className={styles.submitText} type="submit">
+        Submit
+      </button>
     </form>
   );
 }
@@ -225,13 +226,20 @@ function FooterComponent() {
     <div className={styles.footContainer}>
       <div className={styles.topComponent}>
         <div className={styles.leftComp}>
-          <img src="/assets/pickup_service.png" alt="Pickup Service" />
+          <img className={styles.phoneImage} src="/assets/pickup_service.png" alt="Pickup Service" />
         </div>
         <div className={styles.rightComp}>
           <div className={styles.rightCompChild}>
-            <h1>Focused on Time Saving</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo impedit amet nostrum similique asperiores, labore suscipit laudantium aperiam dolores totam earum magni ipsa ad sunt culpa minima possimus quaerat temporibus?</p>
-            <button className={styles.input}>Download the mobile app</button>
+            <h1 className={styles.focusedText}>Focused on <br/> Time Saving</h1>
+            <p className={styles.paraText}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+              impedit amet nostrum similique asperiores, labore suscipit
+              laudantium aperiam dolores totam earum magni ipsa ad sunt culpa
+              minima possimus quaerat temporibus?
+              impedit nostrum similique asperiores, labore suscipit
+              laudantium aperiam dolores totam earum magni ipsa ad sunt culpa
+            </p>
+            <button className={styles.downloadButton}>Download the mobile app</button>
           </div>
         </div>
         <div className={styles.rightComponent}></div>
@@ -239,52 +247,72 @@ function FooterComponent() {
       <div className={styles.bottomComponent}>
         <div className={styles.navCompFooter}>
           <nav className={styles.nav}>
-          {/* logo */}
-          {/* <Logo /> */}
-          <div className={styles.logo}>
-            <Image
-              src={"/assets/openauto.svg"}
-              alt="Open Auto"
-              width={250}
-              height={40}
-            ></Image>
-          </div>
-          {/* menu */}
-          {/* <Menu /> */}
-          <div className={styles.menu}>
-            <div className={styles.phone}>
-              <img
-                className={styles.phoneIcon}
-                src={"/assets/icons/Phone.svg"}
+            {/* logo */}
+            {/* <Logo /> */}
+            <div className={styles.logo}>
+              <Image
+                src={"/assets/openauto.svg"}
                 alt="Open Auto"
-              />
-              <span>+769 586 4558</span>
+                width={250}
+                height={40}
+              ></Image>
             </div>
-            <div className={styles.email}>
-              <img
-                className={styles.emailIcon}
-                src={"/assets/icons/email.svg"}
-                alt="Open Auto"
-              />
-              <span>service@openauto.ca</span>
+            {/* menu */}
+            {/* <Menu /> */}
+            <div className={styles.menu}>
+              <div className={styles.phone}>
+                <img
+                  className={styles.phoneIcon}
+                  src={"/assets/icons/Phone.svg"}
+                  alt="Open Auto"
+                />
+                <span>+769 586 4558</span>
+              </div>
+              <div className={styles.email}>
+                <img
+                  className={styles.emailIcon}
+                  src={"/assets/icons/email.svg"}
+                  alt="Open Auto"
+                />
+                <span>service@openauto.ca</span>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
         </div>
         <div className={styles.iconComponentFooter}>
           <div className="copyright">
             <p>Open Auto @ all rights reserved</p>
           </div>
           <div className="iconFooter">
-          <div className={styles.icons}>
-        <div className={styles.iconContainer}>
-          <img className={styles.icon} src="/assets/icons/fb.svg" alt="fb" />
-          <img className={styles.icon} src="/assets/icons/ig.svg" alt="fb" />
-          <img className={styles.icon} src="/assets/icons/in.svg" alt="fb" />
-          <img className={styles.icon} src="/assets/icons/yt.svg" alt="fb" />
-          <img className={styles.icon} src="/assets/icons/tw.svg" alt="fb" />
-        </div>
-      </div>
+            <div className={styles.icons}>
+              <div className={styles.iconContainer}>
+                <img
+                  className={styles.icon}
+                  src="/assets/icons/fb.svg"
+                  alt="fb"
+                />
+                <img
+                  className={styles.icon}
+                  src="/assets/icons/ig.svg"
+                  alt="fb"
+                />
+                <img
+                  className={styles.icon}
+                  src="/assets/icons/in.svg"
+                  alt="fb"
+                />
+                <img
+                  className={styles.icon}
+                  src="/assets/icons/yt.svg"
+                  alt="fb"
+                />
+                <img
+                  className={styles.icon}
+                  src="/assets/icons/tw.svg"
+                  alt="fb"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

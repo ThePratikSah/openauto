@@ -1,3 +1,4 @@
+
 .headContainer {
   display: flex;
   flex-direction: column;
@@ -29,7 +30,7 @@
 }
 
 .formComponent {
-  width: 40%;
+  width: 30%;
   min-height: 500px;
   display: flex;
   align-items: flex-start;
@@ -40,7 +41,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  width: 100%;
 }
 
 .icons {
@@ -64,13 +65,24 @@
 }
 
 .input {
-  width: 100%;
+  width: 60%;
   padding: 10px;
   border-radius: 500px;
   border: 2px solid #10151e;
   cursor: pointer;
+  margin: 15px 0px 0px 0px;
 }
 
+.submitText {
+  width: 65%;
+  font-size:large;
+  color: #10151e;
+  padding: 5px;
+  border-radius: 500px;
+  border: 2px solid #10151e;
+  cursor: pointer;
+  margin: 15px 0px 0px 0px;
+}
 .nav {
   display: flex;
   width: 100%;
@@ -128,8 +140,52 @@ align-items: center;
 .topComponent {
   display: flex;
   width: 100%;
+  background-color: aquamarine;
 }
 
-.leftComp, .rightComp {
-  flex: 1;
+.leftComp {
+  background-color: #161b24;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rightComp {
+  background-color: #161b24;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.phoneImage {
+  display: block;
+  width: 60%;
+  height: 60%;
+}
+.rightCompChild {
+  width: 90%;
+  height: 60%;
+}
+.focusedText {
+  color: #cfd1d4;
+  font-size: 200%;
+}
+.paraText {
+  color: #717678;
+  line-height: 1.6;
+
+}
+.downloadButton {
+  width: 40%;
+  font-size:small;
+  color: #cfd1d4;
+  padding: 10px;
+  border-radius: 500px;
+  border: 2px solid #cfd1d4;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 15px 0px 0px 0px;
 }
