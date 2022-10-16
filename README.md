@@ -1,34 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Open Auto Test Task
 
-## Getting Started
+In this project I've used the following dependencies
 
-First, run the development server:
+- [x] node -v16.14.2
+- [x] react -v18.2.0
+- [x] react-dom -v18.2.0
+- [x] next -v12.3.1
+- [x] formik -v2.2.9
+- [x] mongodb -v4.10.0
 
-```bash
-npm run dev
-# or
-yarn dev
+## Author
+
+- [@ThePratikSah](https://www.github.com/ThePratikSah)
+
+## API End Point
+
+1. __Submit Form__ - _POST_ : `{url}`/api/form
+
+Body Parameters
+
+| Parameter | Type   | Description          |
+|-----------|--------|----------------------|
+| name      | string | Name of the visitor  |
+| email     | string | Email of the visitor |
+
+
+## To use Node as per my version
+```
+# make sure nvm is installed on your machine
+nvm use
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Set NODE_ENV Variable (Windows)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+SET MONGODB=mongodb+srv://username:password@openauto-demo.zxdes.mongodb.net/?retryWrites=true&w=majority
+SET DB=openauto
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Set NODE_ENV Variable (Linux)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+export MONGODB=mongodb+srv://username:password@openauto-demo.zxdes.mongodb.net/?retryWrites=true&w=majority
+SET DB=openauto
+```
 
-## Learn More
+## Install MongoDB
 
-To learn more about Next.js, take a look at the following resources:
+https://www.mongodb.com/try/download/community2
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Add Dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm install || yarn
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Start Server
+```
+npm run dev || yarn dev
+```

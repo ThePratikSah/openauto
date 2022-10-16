@@ -70,8 +70,8 @@
   padding: 10px;
   border-radius: 500px;
   border: 1px solid #cfd1d4;
-  cursor: pointer;
   outline: none;
+  color: #cfd1d4;
   font-size: 12px;
   padding: 5px 15px;
   height: 25px;
@@ -90,6 +90,10 @@
   margin: 15px 0px 0px 0px;
   background-color: transparent;
   height: 35px;
+}
+
+.submitText:hover() {
+  background-color: purple;
 }
 
 .nav {
