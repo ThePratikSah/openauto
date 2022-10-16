@@ -1,5 +1,7 @@
 # Open Auto Test Task
 
+![Screenshot](Screenshot-Open-Auto.png)
+
 In this project I've used the following dependencies
 
 - [x] node -v16.14.2
