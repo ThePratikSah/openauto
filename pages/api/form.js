@@ -35,11 +35,10 @@ export default async function handler(req, res) {
 
     // here we have name and email, we can now proceed with the db entry
     try {
-      const result = await insertIntoCollection(name, email);
+      await insertIntoCollection(name, email);
       return res.status(201).json({
         error: false,
         message: "Form submitted",
-        result,
       });
     } catch (error) {
       return res.status(500).json({
@@ -48,5 +47,4 @@ export default async function handler(req, res) {
       });
     }
   }
-  res.status(200).json({ name: "John Doe" });
 }

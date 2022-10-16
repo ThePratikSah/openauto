@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useFormik } from 'formik';
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -33,8 +33,23 @@ function HeaderComponent() {
         {/* menu */}
         {/* <Menu /> */}
         <div className={styles.menu}>
-          <span>+769 586 4558</span>
-          <span>service@openauto.ca</span>
+          <div className={styles.phone}>
+            <img
+              className={styles.phoneIcon}
+              src={"/assets/icons/Phone.svg"}
+              alt="Open Auto"
+            />
+            <span>+769 586 4558</span>
+          </div>
+          <div className={styles.email}>
+            <img
+              className={styles.emailIcon}
+              src={"/assets/icons/email.svg"}
+              alt="Open Auto"
+            />
+            <span>service@openauto.ca</span>
+          </div>
+
           <button className={styles.outlinedButton}>
             Download the mobile app
           </button>
@@ -51,38 +66,7 @@ function HeaderComponent() {
             you deal with unexpected repairs worry-free.
           </p>
           {/* <CustomForm /> */}
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validate={(values) => {
-              const errors = {};
-              if (!values.email) {
-                errors.email = "Required";
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-              ) {
-                errors.email = "Invalid email address";
-              }
-              return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
-          >
-            {({ isSubmitting }) => (
-              <Form>
-                <Field type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-                <Field type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-              </Form>
-            )}
-          </Formik>
+          <CustomForm />
         </div>
         {/* <HeroImageComponent /> */}
         <div className={styles.imageComp}>
@@ -96,8 +80,13 @@ function HeaderComponent() {
       {/* icon section */}
       {/* <IconComponent /> */}
       <div className={styles.icons}>
-        <p>insta</p>
-        <p>facebook</p>
+        <div className={styles.iconContainer}>
+          <img className={styles.icon} src="/assets/icons/fb.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/ig.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/in.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/yt.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/tw.svg" alt="fb" />
+        </div>
       </div>
     </div>
   );
@@ -145,41 +134,88 @@ function Hero() {
   );
 }
 
+// form validation
+function validate(values) {
+  const errors = {};
+
+  if (!values.name) {
+    errors.name = 'Required';
+  } else if (values.name.length > 20) {
+    errors.name = 'Must be 20 characters or less';
+  }
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  return errors;
+};
+
+// handle post request
+async function handlePost(values, resetForm) {
+
+  const res = await fetch('/api/form', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: values // body data type must match "Content-Type" header
+  });
+
+  const data = await res.json();
+
+  if (res.status === 201) {
+    alert('Form submited');
+    resetForm({ values: '' });
+  }
+}
+
 // formik component
 function CustomForm() {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+    },
+    validate,
+    onSubmit: (values, {resetForm}) => {
+      handlePost(JSON.stringify(values, null, 2), resetForm);
+    },
+  });
   return (
-    <Formik
-      initialValues={{ email: "", password: "" }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form>
-          <Field type="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <form onSubmit={formik.handleSubmit}>
+      <input
+        placeholder='Enter your name'
+        className={styles.input}
+        id="name"
+        name="name"
+        type="text"
+        onChange={formik.handleChange}
+        value={formik.values.name}
+      />
+      {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+
+      <input
+        placeholder='Enter your email'
+        className={styles.input}
+        id="email"
+        name="email"
+        type="email"
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      />
+      {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+
+      <button className={styles.input}  type="submit">Submit</button>
+    </form>
   );
 }
 
@@ -187,7 +223,71 @@ function CustomForm() {
 function FooterComponent() {
   return (
     <div className={styles.footContainer}>
-      <h1>Hello</h1>
+      <div className={styles.topComponent}>
+        <div className={styles.leftComp}>
+          <img src="/assets/pickup_service.png" alt="Pickup Service" />
+        </div>
+        <div className={styles.rightComp}>
+          <div className={styles.rightCompChild}>
+            <h1>Focused on Time Saving</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo impedit amet nostrum similique asperiores, labore suscipit laudantium aperiam dolores totam earum magni ipsa ad sunt culpa minima possimus quaerat temporibus?</p>
+            <button className={styles.input}>Download the mobile app</button>
+          </div>
+        </div>
+        <div className={styles.rightComponent}></div>
+      </div>
+      <div className={styles.bottomComponent}>
+        <div className={styles.navCompFooter}>
+          <nav className={styles.nav}>
+          {/* logo */}
+          {/* <Logo /> */}
+          <div className={styles.logo}>
+            <Image
+              src={"/assets/openauto.svg"}
+              alt="Open Auto"
+              width={250}
+              height={40}
+            ></Image>
+          </div>
+          {/* menu */}
+          {/* <Menu /> */}
+          <div className={styles.menu}>
+            <div className={styles.phone}>
+              <img
+                className={styles.phoneIcon}
+                src={"/assets/icons/Phone.svg"}
+                alt="Open Auto"
+              />
+              <span>+769 586 4558</span>
+            </div>
+            <div className={styles.email}>
+              <img
+                className={styles.emailIcon}
+                src={"/assets/icons/email.svg"}
+                alt="Open Auto"
+              />
+              <span>service@openauto.ca</span>
+            </div>
+          </div>
+        </nav>
+        </div>
+        <div className={styles.iconComponentFooter}>
+          <div className="copyright">
+            <p>Open Auto @ all rights reserved</p>
+          </div>
+          <div className="iconFooter">
+          <div className={styles.icons}>
+        <div className={styles.iconContainer}>
+          <img className={styles.icon} src="/assets/icons/fb.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/ig.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/in.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/yt.svg" alt="fb" />
+          <img className={styles.icon} src="/assets/icons/tw.svg" alt="fb" />
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
