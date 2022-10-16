@@ -77,8 +77,6 @@ function HeaderComponent() {
           />
         </div>
       </div>
-      {/* icon section */}
-      {/* <IconComponent /> */}
       <div className={styles.icons}>
         <div className={styles.iconContainer}>
           <img className={styles.icon} src="/assets/icons/fb.svg" alt="fb" />
@@ -88,6 +86,8 @@ function HeaderComponent() {
           <img className={styles.icon} src="/assets/icons/tw.svg" alt="fb" />
         </div>
       </div>
+      {/* icon section */}
+      {/* <IconComponent /> */}
     </div>
   );
 }
@@ -245,11 +245,10 @@ function FooterComponent() {
         <div className={styles.rightComponent}></div>
       </div>
       <div className={styles.bottomComponent}>
-        <div className={styles.navCompFooter}>
-          <nav className={styles.nav}>
+          <div className={styles.market}>
             {/* logo */}
             {/* <Logo /> */}
-            <div className={styles.logo}>
+            <div className={styles.market_logo}>
               <Image
                 src={"/assets/openauto.svg"}
                 alt="Open Auto"
@@ -259,8 +258,8 @@ function FooterComponent() {
             </div>
             {/* menu */}
             {/* <Menu /> */}
-            <div className={styles.menu}>
-              <div className={styles.phone}>
+            <div className={styles.market_menu}>
+              <div className={styles.market_phone}>
                 <img
                   className={styles.phoneIcon}
                   src={"/assets/icons/Phone.svg"}
@@ -268,7 +267,7 @@ function FooterComponent() {
                 />
                 <span>+769 586 4558</span>
               </div>
-              <div className={styles.email}>
+              <div className={styles.market_email}>
                 <img
                   className={styles.emailIcon}
                   src={"/assets/icons/email.svg"}
@@ -277,15 +276,19 @@ function FooterComponent() {
                 <span>service@openauto.ca</span>
               </div>
             </div>
-          </nav>
         </div>
         <div className={styles.iconComponentFooter}>
-          <div className="copyright">
+          <div className={styles.copyright}>
             <p>Open Auto @ all rights reserved</p>
           </div>
-          <div className="iconFooter">
-            <div className={styles.icons}>
-              <div className={styles.iconContainer}>
+          <div className={styles.footer_options}>
+            <span>Privacy Policy</span>
+            <span>Terms of use</span>
+            <span>Cookie Policy</span>
+          </div>
+          <div className={styles.iconFooter}>
+            <div className={styles.footer_icons}>
+              <div className={styles.footer_iconContainer}>
                 <img
                   className={styles.icon}
                   src="/assets/icons/fb.svg"

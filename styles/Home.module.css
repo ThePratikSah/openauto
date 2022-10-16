@@ -1,18 +1,13 @@
-
 .headContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin: 0 2rem;
+  margin: 0;
   padding: 0 2rem;
-  /* background-image: linear-gradient(290deg, #171f28, #10151e); */
-  /* background-color: #171f28; */
 }
 
 .hero {
   display: flex;
-  height: 100%;
   justify-content: space-between;
 }
 
@@ -36,6 +31,11 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+  color: #cfd1d4;
+}
+
+.formComponent p {
+  color: #cfd1d4 !important;
 }
 
 .form {
@@ -62,33 +62,43 @@
 .icon {
   height: 20px;
   width: auto;
+  filter: invert(74%) sepia(83%) saturate(8%) hue-rotate(177deg) brightness(94%) contrast(97%);
 }
 
 .input {
   width: 60%;
   padding: 10px;
   border-radius: 500px;
-  border: 2px solid #10151e;
+  border: 1px solid #cfd1d4;
   cursor: pointer;
+  outline: none;
+  font-size: 12px;
+  padding: 5px 15px;
+  height: 25px;
   margin: 15px 0px 0px 0px;
+  background-color: transparent;
 }
 
 .submitText {
-  width: 65%;
-  font-size:large;
-  color: #10151e;
-  padding: 5px;
+  width: 60%;
+  font-size: 13px;
+  color: #cfd1d4;
+  padding: 5px 15px;
   border-radius: 500px;
-  border: 2px solid #10151e;
+  border: 1px solid #cfd1d4;
   cursor: pointer;
   margin: 15px 0px 0px 0px;
+  background-color: transparent;
+  height: 35px;
 }
+
 .nav {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  height: 16vh;
+  height: 100px;
+  padding: 0px 20px;
 }
 
 .logo {
@@ -101,6 +111,10 @@
   justify-content: flex-start;
 }
 
+.logo img {
+  filter: invert(74%) sepia(83%) saturate(8%) hue-rotate(177deg) brightness(94%) contrast(97%);
+}
+
 .menu {
   display: flex;
   flex: 1;
@@ -110,15 +124,17 @@
 }
 
 .outlinedButton {
-  padding: 10px 25px;
+  padding: 8px 15px;
   border-radius: 500px;
-  border-color: #10151e;
+  border: 1px solid #cfd1d4;
+  outline: none;
+  background-color: transparent;
+  color: #cfd1d4;
 }
 
 .footContainer {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  /* background-color: #10151e; */
 }
 
 .phone {
@@ -129,6 +145,13 @@ align-items: center;
   display: flex;
   align-items:center;
   justify-content: center;
+  color: #cfd1d4;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.email img, .phone img {
+  filter: invert(74%) sepia(83%) saturate(8%) hue-rotate(177deg) brightness(94%) contrast(97%);
 }
 
 .emailIcon, .phoneIcon {
@@ -139,12 +162,12 @@ align-items: center;
 
 .topComponent {
   display: flex;
+  align-items: center;
   width: 100%;
-  background-color: aquamarine;
+  height: 80vh;
 }
 
 .leftComp {
-  background-color: #161b24;
   width: 50%;
   height: 100vh;
   display: flex;
@@ -152,7 +175,6 @@ align-items: center;
   align-items: center;
 }
 .rightComp {
-  background-color: #161b24;
   width: 50%;
   height: 100vh;
   display: flex;
@@ -163,7 +185,7 @@ align-items: center;
 .phoneImage {
   display: block;
   width: 60%;
-  height: 60%;
+  height: 55%;
 }
 .rightCompChild {
   width: 90%;
@@ -190,36 +212,173 @@ align-items: center;
   margin: 15px 0px 0px 0px;
 }
 
+.market {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px 10px 50px;
+}
+
+.market_logo img, .market_email img, .market_phone img {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  filter: invert(74%) sepia(83%) saturate(8%) hue-rotate(177deg) brightness(94%) contrast(97%);
+}
+
+.market_menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #cfd1d4;
+  width: fit-content;
+}
+
+.market_phone, .market_email {
+  display: flex;
+  margin-right: 15px;
+  font-size: 12px;
+}
+
+.market_menu img {
+  margin: 5px;
+  height: 12px;
+}
+
+.bottomComponent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.iconComponentFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 50px;
+  color: #cfd1d4;
+  font-size: 14px;
+}
+
+.footer_iconContainer img {
+  margin-right: 20px;
+}
+
+.footer_options {
+  display: none;
+}
+
 /* css for mobile device */
-@media only screen and (max-width: 1400px) {
-  .headContainer {
-    padding: 0;
-    height: 100vh;
-  }
-  .nav {
-    height: 20vh;
-  }
-  .logo {
-    justify-content: center;
-  }
+@media only screen and (max-width: 1200px) {
   .menu {
     display: none;
   }
-  .formComponent {
-    width: 80%;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .form {
-    align-items: center;
-  }
+
   .hero {
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+  }
+
+  .formComponent {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .form {
+    align-items: center;
+    width: 100%;
+  }
+
+  .form input {
+    width: 80%;
+  }
+
+  .imageComp {
+    width: 100%;
+  }
+
+  .icons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .footContainer {
+    height: auto;
+  }
+
+  .topComponent {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    height: auto;
+  }
+
+  .leftComp {
+    grid-row: 2/3;
+    width: 100%;
+    height: auto;
+  }
+
+  .leftComp img {
+    width: 80%;
+  }
+
+  .rightComp {
+    grid-row: 1/2;
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .rightComp .downloadButton {
+    height: 40px;
+    width: auto
+  }
+
+  .market {
+    flex-direction: column;
+    padding: 10px 20px;
+    margin: 40px 0 20px 0;
+  }
+/*
+  .market_logo img {
+    height: 100px;
+  } */
+
+  .market_menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .iconComponentFooter {
+    flex-direction: column;
+  }
+
+  .iconFooter {
+    width: 100%;
+  }
+
+  .footer_iconContainer {
+    display: flex;
+    margin: 15px 0;
+    justify-content: space-between;
+  }
+
+  .footer_options {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  .footer_options span {
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
   }
 }
